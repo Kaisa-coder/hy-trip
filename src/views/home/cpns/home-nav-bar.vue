@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar">
-    <div class="title">泓源旅途</div>
+    <div class="title">泓源旅途1</div>
   </div>
 </template>
 
