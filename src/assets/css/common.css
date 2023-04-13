@@ -6,3 +6,11 @@ body {
   font-size: 14px;
   /* font-family: 'Courier New', Courier, monospace; */
 }
+
+.top-page {
+  position: relative;
+  z-index: 9;
+  height: 100vh;
+  background-color: #fff;
+  overflow-y: auto;
+}
