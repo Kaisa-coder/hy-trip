@@ -4,6 +4,7 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { formatMonthDay, getDiffDays } from '@/utils/format_date'
+import useHomeStore from '@/stores/modules/home'
 
 const router = useRouter()
 
@@ -48,6 +49,10 @@ const formatter = (day) => {
   }
   return day
 }
+
+const homeStroe = useHomeStore()
+const { hotSuggests } = storeToRefs(homeStroe)
+console.log(hotSuggests.value)
 </script>
 
 <template>
@@ -77,6 +82,19 @@ const formatter = (day) => {
 
     <van-calendar v-model:show="showCalendar" type="range" color="#ff9854" :round="false" :show-confirm="false"
       :formatter="formatter" @confirm="onConfirm" />
+    <div class="section price-counter bottom-gray-line">
+      <div class="start">价格不限</div>
+      <div class="end">人数不限</div>
+    </div>
+    <div class="section keyword bottom-gray-line">关键字/位置/民宿名</div>
+
+    <div class="section hot-suggests">
+      <template v-for="(item, index) in hotSuggests" :key="index">
+        <div class="item" :style="{ color: item.tagText.color, background: item.tagText.background.color }">
+          {{ item.tagText.text }}
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -114,7 +132,13 @@ const formatter = (day) => {
   }
 }
 
-.date-range {
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 20px;
+  color: #999;
+  height: 44px;
 
   .start {
     flex: 1;
@@ -146,21 +170,34 @@ const formatter = (day) => {
       font-weight: 500;
     }
   }
+
+
 }
 
-.section {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 0 20px;
-  color: #999;
-  height: 44px;
-
+.date-range {
   .stay {
     flex: 1;
     text-align: center;
     font-size: 12px;
     color: #666;
+  }
+}
+
+.price-counter {
+  .start {
+    border-right: 1px solid var(--line-color);
+  }
+}
+
+.hot-suggests {
+  margin: 10px 0;
+
+  .item {
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1;
   }
 }
 </style>
