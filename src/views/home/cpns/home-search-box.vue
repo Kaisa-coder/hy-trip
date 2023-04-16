@@ -25,7 +25,7 @@ const cityStore = useCityStore()
 const { currentCity } = storeToRefs(cityStore)
 
 const nowDate = new Date()
-const newDate = new Date().setDate(nowDate.getDate() + 1)
+const newDate = new Date().setDate(nowDate.getDate() + 2)
 
 const startDate = ref(formatMonthDay(nowDate))
 const endDate = ref(formatMonthDay(newDate))
