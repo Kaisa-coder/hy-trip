@@ -1,5 +1,7 @@
 <script setup>
+import useCityStore from '@/stores/modules/city';
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
   groupData: {
@@ -13,6 +15,13 @@ const indexList = computed(() => {
   list.unshift('#')
   return list
 })
+
+const router = useRouter()
+const cityStore = useCityStore()
+const cityClick = (city) => {
+  cityStore.currentCity = city
+  router.back()
+}
 </script>
 
 <template>
@@ -21,14 +30,14 @@ const indexList = computed(() => {
     <van-index-bar :index-list="indexList">
       <van-index-anchor index="热门" />
       <div class="list">
-        <template v-for="item in groupData?.hotCities">
-          <div class="city">{{ item.cityName }}</div>
+        <template v-for="city in groupData?.hotCities">
+          <div class="city" @click="cityClick(city)">{{ city.cityName }}</div>
         </template>
       </div>
       <template v-for="group in groupData?.cities">
         <van-index-anchor :index="group.group" />
         <template v-for="city in group.cities">
-          <van-cell :title="city.cityName" />
+          <van-cell :title="city.cityName" @click="cityClick(city)" />
         </template>
       </template>
     </van-index-bar>
@@ -37,8 +46,6 @@ const indexList = computed(() => {
 
 
 <style lang="less" scoped>
-
-
 .list {
   display: flex;
   flex-wrap: wrap;
