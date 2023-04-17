@@ -7,8 +7,8 @@ const route = useRoute()
 <template>
   <div class="app">
     <RouterView></RouterView>
-    <!-- <tab-Bar v-if="!route.meta.hideTabBar"></tab-Bar> -->
-    <tab-Bar></tab-Bar>
+    <tab-Bar v-if="!route.meta.hideTabBar"></tab-Bar>
+    <!-- <tab-Bar></tab-Bar> -->
   </div>
 </template>
 

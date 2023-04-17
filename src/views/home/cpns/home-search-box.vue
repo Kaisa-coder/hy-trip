@@ -52,7 +52,17 @@ const formatter = (day) => {
 
 const homeStroe = useHomeStore()
 const { hotSuggests } = storeToRefs(homeStroe)
-console.log(hotSuggests.value)
+
+const searchBtnClick = () => {
+  router.push({
+    path: '/search',
+    query: {
+      startDate: startDate.value,
+      endDate: endDate.value,
+      currentCity: currentCity.value.cityName
+    }
+  })
+}
 </script>
 
 <template>
@@ -94,6 +104,10 @@ console.log(hotSuggests.value)
           {{ item.tagText.text }}
         </div>
       </template>
+    </div>
+
+    <div class="section search-btn">
+      <div class="btn" @click="searchBtnClick">开始搜索</div>
     </div>
   </div>
 </template>
@@ -191,6 +205,7 @@ console.log(hotSuggests.value)
 
 .hot-suggests {
   margin: 10px 0;
+  height: auto;
 
   .item {
     padding: 4px 8px;
@@ -198,6 +213,22 @@ console.log(hotSuggests.value)
     border-radius: 14px;
     font-size: 12px;
     line-height: 1;
+  }
+}
+
+.search-btn {
+  .btn {
+    width: 342px;
+    height: 38px;
+    max-height: 50px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 20px;
+    color: #fff;
+    background-image: var(--theme-linear-gradient);
+    outline: red !important;
   }
 }
 </style>

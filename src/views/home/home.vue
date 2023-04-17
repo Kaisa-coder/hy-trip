@@ -2,10 +2,12 @@
 import { ref } from 'vue';
 import HomeNavBar from './cpns/home-nav-bar.vue';
 import HomeSearchBox from './cpns/home-search-box.vue';
+import HomeCategories from './cpns/home-categories.vue'
 import useHomeStore from '@/stores/modules/home'
 
 const homeStroe = useHomeStore()
 homeStroe.fetchHotSuggests()
+homeStroe.fetchCategoriesData()
 </script>
 
 <template>
@@ -15,7 +17,7 @@ homeStroe.fetchHotSuggests()
       <img src="@/assets/img/home/banner.webp" alt="">
     </div>
     <HomeSearchBox></HomeSearchBox>
-
+    <HomeCategories></HomeCategories>
   </div>
 </template>
 
