@@ -10,6 +10,15 @@ const homeStroe = useHomeStore()
 homeStroe.fetchHotSuggests()
 homeStroe.fetchCategoriesData()
 homeStroe.fetchHouseListData()
+
+window.addEventListener('scroll', () => {
+  const clientHeight = document.documentElement.clientHeight
+  const scrollTop = document.documentElement.scrollTop
+  const scrollHeight = document.documentElement.scrollHeight
+  if (clientHeight + scrollTop >= scrollHeight) {
+    homeStroe.fetchHouseListData()
+  }
+})
 </script>
 
 <template>
@@ -26,9 +35,13 @@ homeStroe.fetchHouseListData()
 
 
 <style lang="less" scoped>
-.banner {
-  img {
-    width: 100%;
+.home {
+  padding-bottom: 60px;
+
+  .banner {
+    img {
+      width: 100%;
+    }
   }
 }
 </style>
