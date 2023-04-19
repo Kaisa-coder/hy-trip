@@ -1,13 +1,15 @@
 <script setup>
 import { ref } from 'vue';
 import HomeNavBar from './cpns/home-nav-bar.vue';
+import useHomeStore from '@/stores/modules/home'
 import HomeSearchBox from './cpns/home-search-box.vue';
 import HomeCategories from './cpns/home-categories.vue'
-import useHomeStore from '@/stores/modules/home'
+import homeContent from './cpns/home-content.vue';
 
 const homeStroe = useHomeStore()
 homeStroe.fetchHotSuggests()
 homeStroe.fetchCategoriesData()
+homeStroe.fetchHouseListData()
 </script>
 
 <template>
@@ -18,6 +20,7 @@ homeStroe.fetchCategoriesData()
     </div>
     <HomeSearchBox></HomeSearchBox>
     <HomeCategories></HomeCategories>
+    <homeContent></homeContent>
   </div>
 </template>
 

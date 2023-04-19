@@ -27,6 +27,7 @@ const currentIndex = ref(0)
 
 <style lang="less" scoped>
 .tab-bar {
+  height: 50px;
   img {
     height: 26px;
   }
