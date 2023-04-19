@@ -1,5 +1,24 @@
+<template>
+  <div class="house-item">
+    <div class="item-inner">
+      <div class="cover">
+        <img :src="itemData.image.url" alt="">
+      </div>
+      <div class="info">
+        <div class="summary">{{ itemData.summaryText }}</div>
+        <div class="name">{{ itemData.houseName }}</div>
+        <div class="price">
+          <van-rate :model-value="itemScore" color="#fff" :size="15" readonly allow-half />
+          <div class="new">¥ {{ itemData.finalPrice }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
-import { computed } from 'vue';
+import { computed } from '@vue/reactivity';
+
 
 const props = defineProps({
   itemData: {
@@ -8,34 +27,11 @@ const props = defineProps({
   }
 })
 
-const itemStore = computed(() => {
+const itemScore = computed(() => {
   return Number(props.itemData.commentScore)
 })
+
 </script>
-
-<template>
-  <div class="house-item">
-    <div class="item-inner">
-      <div class="cover">
-        <img :src="itemData.image.url" alt="">
-        <span>{{ itemData.location }}</span>
-      </div>
-      <div class="infos">
-        <div class="location">
-          <img src="@/assets/img/home/location.png" alt="">
-          <span>{{ itemData.location }}</span>
-        </div>
-        <div class="name">{{ itemData.houseName }}</div>
-        <div class="summary">{{ itemData.summaryText }}</div>
-        <div class="price">
-          <van-rate :model-value="itemStore" color="#fff" :size="15" readonly allow-half />
-          <div class="news">{{ itemData.finalPrice }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 
 <style lang="less" scoped>
 .house-item {
@@ -44,7 +40,7 @@ const itemStore = computed(() => {
   .item-inner {
     position: relative;
     margin: 5px;
-    background-color: #fff;
+    background: #fff;
     border-radius: 6px;
     overflow: hidden;
 
@@ -54,11 +50,10 @@ const itemStore = computed(() => {
       }
     }
 
-    .infos {
+    .info {
       position: absolute;
       bottom: 0;
       padding: 8px 10px;
-      // background-color: #fff;
       color: #fff;
 
       .summary {
@@ -78,8 +73,6 @@ const itemStore = computed(() => {
         display: flex;
         justify-content: space-between;
         margin-top: 10px;
-
-        .news {}
       }
     }
   }
